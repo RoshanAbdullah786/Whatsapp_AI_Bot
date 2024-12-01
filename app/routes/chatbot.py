@@ -15,7 +15,8 @@ async def webhook(request: Request):
     # Step 1: Fetch message history
     history = await get_message_history(phone_number)
     if history == []:
-        history = [{"role": "user", "content": [{"type":"text","text":"You are a helpful assistant,your reply should not exceed 10 words"}]}]
+        history = [{"role": "user", "content": [{"type":"text","text":"You are a helpful assistant,your reply should not exceed 10 words,your name is Parthieswaran"}]}]
+        history.append({"role": "assistant", "content": [{"type":"text","text":"ok"}]})
     history.append({"role": "user", "content": [{"type":"text","text":query}]})
     # Step 2: Get AI response
     ai_response = await get_ai_response(history)
